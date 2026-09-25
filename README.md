@@ -1,67 +1,62 @@
-# Projeto-Biblioteca-New
-Teste de projeto
-# 📚 BiblioGest - Sistema de Gestão de Biblioteca
+# 🟢 BiblioGest: Sistema de Gestão de Acervo Escolar
 
-O **BiblioGest** é uma aplicação web desenvolvida em Django para o gerenciamento de acervos bibliográficos. O sistema permite o cadastro, listagem, edição e exclusão de livros, além de gerenciar os vínculos entre autores, editoras e obras.
+O **BiblioGest** é uma aplicação web desenvolvida para modernizar e digitalizar o controle de acervos, cadastros de usuários e fluxos de empréstimos da biblioteca escolar. O sistema substitui os antigos registros manuais por uma plataforma ágil, responsiva e integrada a um banco de dados relacional.
 
 ---
 
-## 🚀 Funcionalidades
+## 🚀 Como Executar a Aplicação (Roteiro Passo a Passo)
 
-- 🔐 **Autenticação:** Cadastro e login de usuários (se houver).
-- 📖 **Gestão de Acervo:** CRUD completo (Criar, Ler, Atualizar e Deletar) de livros.
-- 🔗 **Vínculos Inteligentes:** Associação dinâmica entre livros, autores e categorias.
-- 🖥️ **Interface Responsiva:** Painel administrativo simples e intuitivo para o usuário.
+Siga os comandos abaixo no terminal do seu editor (como o PyCharm ou VS Code) para ativar o ambiente virtual e iniciar o servidor local do sistema:
 
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **Python 3.x**
-- **Django Framework**
-- **SQLite** (Banco de dados padrão de desenvolvimento)
-- **HTML5 / CSS3 / JavaScript** (Para a interface)
-
----
-
-## 📦 Como Executar o Projeto Localmente
-
-Siga os passos abaixo para rodar o BiblioGest na sua máquina:
-
-### 1. Clonar o Repositório
 ```bash
-git clone https://github.com
-cd bibliogest
-```
+# 1. Ative o ambiente virtual (Virtual Environment)
+.\.venv\Scripts\Activate.ps1
 
-### 2. Criar e Ativar o Ambiente Virtual
-**No Windows:**
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
+# 2. Acesse a pasta raiz do projeto Django
+cd .\biblioteca_project\
 
-**No Linux/macOS:**
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
+# 3. Inicialize os componentes principais (se aplicável)
+python main.py
 
-### 3. Instalar as Dependências
-```bash
-python -m pip install django dj-static
-```
-*(Caso tenha o arquivo de requerimentos, use: `python -m pip install -r requirements.txt`)*
-
-### 4. Rodar as Migrações do Banco de Dados
-```bash
-python manage.py migrate
-```
-
-### 5. Iniciar o Servidor de Desenvolvimento
-```bash
+# 4. Inicie o servidor de desenvolvimento do Django
 python manage.py runserver
 ```
 
-Agora, abra o seu navegador e acesse: **`http://127.0.0`**
+Após iniciar o servidor, abra o seu navegador de internet e acesse o endereço local:
+👉 **[http://127.0.0](http://127.0.0)**
 
+---
+
+## 🛠️ Tecnologias e Arquitetura Utilizadas
+
+A aplicação foi construída utilizando divisões claras entre regras de negócio e interface:
+
+*   **Back-End (Inteligência do Sistema):**
+    *   **Python:** Linguagem base para codificação de toda a lógica do servidor.
+    *   **Django Framework:** Estrutura para gerenciamento de rotas seguras, validação de formulários e mapeamento de dados.
+    *   **SQLite:** Banco de dados relacional integrado para persistência e armazenamento das informações.
+*   **Front-End (Interface Visual):**
+    *   **HTML5 & CSS3:** Estruturação semântica e customização estética global.
+    *   **Bootstrap 5:** Componentes responsivos, tabelas limpas e botões institucionais na paleta verde-escura.
+    *   **JavaScript:** Interceptação lógica de eventos e manipulação dinâmica de elementos (janela modal de confirmação).
+
+---
+
+## 📊 Módulos e Funcionalidades do CRUD (Sem Django Admin)
+
+O sistema opera com independência completa do painel nativo do Django, possuindo telas próprias para manipulação de dados:
+
+*   **👥 Módulo de Usuários:** Cadastro, consulta em tabela estruturada e edição de dados de Alunos, Professores e Servidores.
+*   **📚 Módulo de Livros (Acervo):** Catálogo detalhado com indicação visual automatizada de status (🟢 Disponível / 🔴 Emprestado).
+*   **📅 Controle de Empréstimos:** Vinculação digital entre leitores e obras, com cálculo automatizado de prazo de **devolução limite para 8 dias**.
+*   **✅ Sistema de Devoluções (Histórico):** Lógica integrada no back-end que altera o status do livro de volta para disponível e desativa o empréstimo ativo, retendo as informações no histórico do banco de dados de forma segura.
+*   **⚠️ Interatividade com JavaScript:** Validação e segurança através de um modal customizado em JavaScript que impede a exclusão acidental de registros nas tabelas.
+
+---
+
+## 📜 Informações do Projeto Acadêmico
+*   **Instituição:** Universidade Federal Rural da Amazônia (UFRA)
+*   **Campus:** Capitão Poço – Polo São Miguel do Guamá
+*   **Curso:** Bacharelado em Sistemas de Informação
+*   **Disciplina:** Desenvolvimento Web
+*   **Equipe de Desenvolvimento:** Jennifer dos Reis Lima & Railde Leal dos Santos
