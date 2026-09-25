@@ -1,35 +1,42 @@
 {% extends 'core/base.html' %}
 
 {% block conteudo %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <h3 class="fw-bold text-secondary mb-0">
-            {% if editando %} Editar Livro {% else %} Cadastrar Novo Livro {% endif %}
-        </h3>
-            <a href="{% url 'lista_livros' %}" class="text-dark me-3 fs-4" title="Voltar"><i class="bi bi-arrow-left"></i></a>
-            <h3 class="fw-bold text-secondary mb-0">Cadastrar Novo Livro</h3>
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+    <div style="width: 100%; max-width: 650px;">
+        
+           <div style="border-bottom: 1px solid #edf2f7; padding-bottom: 15px; margin-bottom: 25px; display: flex; align-items: center;">
+            <a href="{% url 'lista_livros' %}" style="color: #64748b; text-decoration: none; margin-right: 15px; font-size: 1.3rem;" title="Voltar">⬅️</a>
+            <h3 class="fw-bold" style="color: #1e293b; margin: 0; font-weight: 700;">
+                {% if editando %} Editar Livro {% else %} Cadastrar Novo Livro {% endif %}
+            </h3>
         </div>
-
-        <form method="POST">
-            {% csrf_token %}
-            
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="form-label fw-semibold text-muted">Título do Livro</label>
+        
+        <div style="background: #ffffff; border-radius: 12px; border: 1px solid #eef2f5; padding: 30px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);">
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Campo Título do Livro -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; color: #475569; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;">Título do Livro</label>
                     {{ form.titulo }}
                 </div>
-
-                <div class="col-12">
-                    <label class="form-label fw-semibold text-muted">Autor / Escritor</label>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; color: #475569; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px;">Autor / Escritor</label>
                     {{ form.autor }}
                 </div>
-            </div>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #f1f5f9; display: flex; justify-content: flex-end; gap: 12px;">
+                    <a href="{% url 'lista_livros' %}" style="background-color: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: background 0.2s;">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn-biblioteca" style="border: none; cursor: pointer; padding: 10px 24px; box-shadow: 0 2px 4px rgba(30, 126, 83, 0.2);">
+                        Salvar Livro
+                    </button>
+                </div>
+            </form>
+        </div>
 
-            <div class="mt-4 pt-3 border-top d-flex justify-content-end">
-                <a href="{% url 'lista_livros' %}" class="btn btn-light border me-2 px-4">Cancelar</a>
-                <button type="submit" class="btn text-white px-4 bg-biblioteca-verde border-0">Salvar Livro</button>
-            </div>
-        </form>
     </div>
 </div>
 {% endblock %}
