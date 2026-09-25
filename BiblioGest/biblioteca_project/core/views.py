@@ -76,11 +76,13 @@ def cadastrar_usuario(request):
     return render(request, 'core/cadastro_usuario.html', {'form': form})
 
 
+# No arquivo core/views.py, substitua apenas a classe CadastroLivroForm por esta:
+
 class CadastroLivroForm(forms.Form):
-    titulo = forms.CharField(max_length=200,
-                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título da Obra'}))
-    autor = forms.CharField(max_length=150,
-                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do Autor'}))
+    estilo_campo = 'padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1; width: 100%; font-size: 0.95rem;'
+    
+    titulo = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'style': estilo_campo, 'placeholder': 'Título da Obra'}))
+    autor = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'style': estilo_campo, 'placeholder': 'Nome do Autor'}))
 
 
 # 2. Adicione esta nova função de visualização ao final do arquivo:
