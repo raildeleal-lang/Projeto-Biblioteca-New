@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h3 class="fw-bold text-secondary mb-0">
+            {% if editando %} Editar Livro {% else %} Cadastrar Novo Livro {% endif %}
+        </h3>
+            <a href="{% url 'lista_livros' %}" class="text-dark me-3 fs-4" title="Voltar"><i class="bi bi-arrow-left"></i></a>
+            <h3 class="fw-bold text-secondary mb-0">Cadastrar Novo Livro</h3>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label fw-semibold text-muted">Título do Livro</label>
+                    {{ form.titulo }}
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold text-muted">Autor / Escritor</label>
+                    {{ form.autor }}
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-top d-flex justify-content-end">
+                <a href="{% url 'lista_livros' %}" class="btn btn-light border me-2 px-4">Cancelar</a>
+                <button type="submit" class="btn text-white px-4 bg-biblioteca-verde border-0">Salvar Livro</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

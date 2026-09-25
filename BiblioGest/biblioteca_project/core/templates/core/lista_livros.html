@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Acervo de Livros</h2>
+    <a href="{% url 'cadastrar_livro' %}" class="btn-biblioteca">
+        ➕ Novo Livro
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th style="width: 45%;">Título da Obra</th>
+                <th style="width: 25%;">Autor / Escritor</th>
+                <th style="width: 15%; text-align: center;">Status</th>
+                <th style="width: 15%; text-align: right;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td class="fw-bold" style="color: #1e293b;">{{ livro.titulo }}</td>
+                <td style="color: #64748b;">{{ livro.autor }}</td>
+                <td style="text-align: center;">
+                    <!-- Lógica de cores do status usando os novos badges compactos -->
+                    {% if livro.disponivel %}
+                        <span class="badge-professor" style="background-color: #e6f4ea; color: #137333;">Disponível</span>
+                    {% else %}
+                        <span class="badge-servidor" style="background-color: #fce8e6; color: #c5221f;">Emprestado</span>
+                    {% endif %}
+                </td>
+                <td style="text-align: right;">
+                    <!-- Lápis de Edição -->
+                    <a href="{% url 'editar_livro' livro.id %}" class="action-link action-link-edit" title="Editar Livro">✏️</a>
+                    <!-- Lixeira de Exclusão -->
+                    <!-- Botão Excluir do acervo integrado ao Modal JavaScript -->
+                    <a href="#" class="action-link action-link-delete" title="Excluir Livro" onclick="confirmarExclusao(event, '{% url 'excluir_livro' livro.id %}')">🗑️</a>
+
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="text-align: center; color: #94a3b8; padding: 40px 0;">Nenhum livro cadastrado no acervo ainda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
