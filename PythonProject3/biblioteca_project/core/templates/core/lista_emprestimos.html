@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Controle de Empréstimos</h2>
+    <a href="{% url 'cadastrar_emprestimo' %}" class="btn-biblioteca">
+        ➕ Registrar Retirada
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Leitor</th>
+                <th style="width: 35%;">Livro Emprestado</th>
+                <th style="width: 15%;">Retirada</th>
+                <th style="width: 15%;">Devolução Limite</th>
+                <th style="width: 5%; text-align: right;">Baixa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in emprestimos %}
+            <tr>
+                <td class="fw-bold" style="color: #1e293b;">
+                    {{ emp.usuario.user.get_full_name }}
+                    <span class="badge-aluno" style="font-size: 0.75rem; padding: 2px 6px; margin-left: 5px;">{{ emp.usuario.tipo }}</span>
+                </td>
+                <td class="fw-semibold" style="color: #1e7e53;">{{ emp.livro.titulo }}</td>
+                <td style="color: #64748b;">{{ emp.data_emprestimo|date:"d/m/Y" }}</td>
+                <!-- Data limite destacada em vermelho sutil -->
+                <td class="fw-bold" style="color: #dc2626;">{{ emp.data_devolucao_prevista|date:"d/m/Y" }}</td>
+                <td style="text-align: right;">
+                    <!-- Botão de dar baixa (Devolver) -->
+                    <a href="{% url 'devolver_livro' emp.id %}" class="action-link" title="Registrar Devolução" style="color: #16a34a; font-size: 1.2rem;">✅</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center; color: #94a3b8; padding: 40px 0;">Nenhum empréstimo ativo no momento.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

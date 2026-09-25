@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+
+{% block conteudo %}
+<div class="row justify-content-center my-4">
+    <div class="col-md-8">
+        <!-- Cabeçalho do Formulário no Padrão Verde -->
+        <div class="d-flex align-items-center mb-4 border-bottom pb-3">
+            <a href="{% url 'lista_usuarios' %}" class="text-secondary me-3 fs-4" title="Voltar"><i class="bi bi-arrow-left"></i></a>
+            <h3 class="fw-bold text-dark mb-0">
+                {% if editando %} Editar Cadastro do Usuário {% else %} Cadastrar Novo Usuário {% endif %}
+            </h3>
+        </div>
+
+        <!-- Cartão do Formulário -->
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <form method="POST" class="needs-validation">
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+                        <!-- Nome -->
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold text-secondary small">Nome</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted"><i class="bi bi-person"></i></span>
+                                {{ form.nome }}
+                            </div>
+                        </div>
+
+                        <!-- Sobrenome -->
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold text-secondary small">Sobrenome</label>
+                            {{ form.sobrenome }}
+                        </div>
+
+                        <!-- Username -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold text-secondary small">Nome de Usuário (Login)</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted">@</span>
+                                {{ form.username }}
+                            </div>
+                        </div>
+
+                        <!-- Senha -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold text-secondary small">Senha de Acesso</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted"><i class="bi bi-key"></i></span>
+                                {{ form.password }}
+                            </div>
+                        </div>
+
+                        <!-- Matrícula -->
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold text-secondary small">Número de Matrícula</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted"><i class="bi bi-card-text"></i></span>
+                                {{ form.matricula }}
+                            </div>
+                        </div>
+
+                        <!-- Tipo de Vínculo -->
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold text-secondary small">Tipo de Vínculo</label>
+                            {{ form.tipo }}
+                        </div>
+                    </div>
+
+                    <!-- Botões de Ação no Padrão Verde -->
+                    <div class="mt-4 pt-3 border-top d-flex justify-content-end">
+                        <a href="{% url 'lista_usuarios' %}" class="btn btn-light border me-2 px-4 fw-medium text-secondary">Cancelar</a>
+                        <button type="submit" class="btn text-white px-4 bg-biblioteca-verde border-0 shadow-sm fw-medium">
+                            <i class="bi bi-check-lg me-1"></i>Salvar Registro
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

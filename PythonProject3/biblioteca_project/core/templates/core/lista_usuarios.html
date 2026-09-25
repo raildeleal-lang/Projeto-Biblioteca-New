@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Usuários Cadastrados</h2>
+    <a href="{% url 'cadastrar_usuario' %}" class="btn-biblioteca">
+        ➕ Novo Usuário
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th style="width: 45%;">Nome Completo</th>
+                <th style="width: 20%;">Matrícula</th>
+                <th style="width: 20%;">Tipo de Vínculo</th>
+                <th style="width: 15%; text-align: right;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for perfil in usuarios %}
+            <tr>
+                <td class="fw-bold" style="color: #1e293b;">{{ perfil.user.get_full_name }}</td>
+                <td style="color: #64748b;">{{ perfil.matricula }}</td>
+                <td>
+                    {% if perfil.tipo == 'PROFESSOR' %}
+                        <span class="badge-professor">Professor</span>
+                    {% elif perfil.tipo == 'SERVIDOR' %}
+                        <span class="badge-servidor">Servidor</span>
+                    {% else %}
+                        <span class="badge-aluno">Aluno</span>
+                    {% endif %}
+                </td>
+                <td style="text-align: right;">
+                    <!-- Botão Editar (Lápis) -->
+                    <a href="{% url 'editar_usuario' perfil.id %}" class="action-link action-link-edit" title="Editar Usuário">✏️</a>
+                    <!-- Botão Excluir (Lixeira) -->
+                    <a href="{% url 'excluir_usuario' perfil.id %}" class="action-link action-link-delete" title="Excluir Usuário" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">🗑️</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="text-align: center; color: #94a3b8; padding: 40px 0;">Nenhum usuário cadastrado ainda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

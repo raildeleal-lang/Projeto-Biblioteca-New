@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block conteudo %}
+<!-- Bloco de Boas-Vindas Superior -->
+<div style="background-color: #f8fafc; border-left: 5px solid #1e7e53; padding: 25px; border-radius: 8px; margin-bottom: 35px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+    <h1 style="color: #1e293b; font-weight: 700; margin: 0 0 10px 0; font-size: 1.8rem;">Painel de Controle Administrativo</h1>
+    <p style="color: #64748b; margin: 0; font-size: 1rem; line-height: 1.5;">
+        Bem-vindo ao **BiblioGest**. Gerencie os cadastros de usuários, controle o acervo de livros e monitore os prazos automáticos de devolução do sistema a partir dos módulos abaixo.
+    </p>
+</div>
+
+<!-- Grid de Cartões (Lado a Lado) -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+
+    <!-- Cartão 1: Usuários -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: transform 0.2s;">
+        <div>
+            <div style="font-size: 1.5rem; margin-bottom: 10px;">👥</div>
+            <h4 style="color: #1e293b; font-weight: 600; margin: 0 0 10px 0;">Gerenciar Usuários</h4>
+            <p style="color: #64748b; font-size: 0.88rem; margin: 0 0 20px 0; line-height: 1.5;">Acesse a listagem oficial, modifique informações de matrícula e cadastre novos alunos, professores ou servidores.</p>
+        </div>
+        <a href="{% url 'lista_usuarios' %}" class="btn-biblioteca" style="justify-content: center; width: 100%;">Acessar Usuários</a>
+    </div>
+
+    <!-- Cartão 2: Livros -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+        <div>
+            <div style="font-size: 1.5rem; margin-bottom: 10px;">📚</div>
+            <h4 style="color: #1e293b; font-weight: 600; margin: 0 0 10px 0;">Gerenciar Livros</h4>
+            <p style="color: #64748b; font-size: 0.88rem; margin: 0 0 20px 0; line-height: 1.5;">Monitore os títulos que estão nas estantes, acompanhe as obras indisponíveis e insira novos volumes no acervo.</p>
+        </div>
+        <a href="{% url 'lista_livros' %}" class="btn-biblioteca" style="justify-content: center; width: 100%;">Acessar Livros</a>
+    </div>
+
+    <!-- Cartão 3: Empréstimos -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+        <div>
+            <div style="font-size: 1.5rem; margin-bottom: 10px;">📅</div>
+            <h4 style="color: #1e293b; font-weight: 600; margin: 0 0 10px 0;">Controle de Empréstimos</h4>
+            <p style="color: #64748b; font-size: 0.88rem; margin: 0 0 20px 0; line-height: 1.5;">Registre novas retiradas com prazos automatizados de 8 dias e dê baixas rápidas através do sistema de devolução.</p>
+        </div>
+        <a href="{% url 'lista_emprestimos' %}" class="btn-biblioteca" style="justify-content: center; width: 100%;">Acessar Empréstimos</a>
+    </div>
+
+</div>
+{% endblock %}
